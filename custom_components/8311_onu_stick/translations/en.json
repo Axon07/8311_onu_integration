@@ -1,0 +1,88 @@
+{
+  "config": {
+
+    "step": {
+      "user": {
+        "title": "8311 XGS-PON ONU Stick Setup",
+        "description": "Enter the connection details for your ONU stick. SSH keys will be automatically generated and managed. The data update interval determines how often sensor data is fetched from the ONU (minimum 30 seconds, maximum 1 hour - can be changed in 'Options').",
+        "data": {
+          "onu_host": "ONU Host IP",
+          "onu_user": "ONU SSH Username",
+          "device_manufacturer": "Device Manufacturer",
+          "device_name": "Device Name",
+          "scan_interval": "Data Update Interval (seconds)"
+        }
+      },
+      "add_key": {
+        "description": "Please add the following SSH public key to your ONU at https://{onu_host} 'System > Administration > SSH-Keys':\n\n{public_key}\n\nThen toggle the checkbox and click Submit below to test the connection. You do not need to reboot the ONU stick after adding the key.",
+        "data": {
+          "confirm_key_added": "I have added the SSH key to the ONU (required)"
+        }
+      }
+    },
+    "options": {
+      "step": {
+        "init": {
+          "description": "Configure the data update interval for the ONU stick.",
+          "data": {
+            "scan_interval": "Data Update Interval (seconds)"
+          }
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the ONU stick. Please check the HASS raw logs and search for 'onu'.",
+      "invalid_auth": "Authentication failed. Please ensure the SSH key is correctly installed on the ONU.",
+      "key_not_found": "SSH key file not found.",
+      "key_generation_failed": "Failed to generate SSH key. Please check file permissions and the HASS raw logs, search for 'onu'.",
+      "ssh_not_available": "SSH is not available on the specified host. Please check the ONU IP address and ensure SSH is enabled.",
+      "unknown": "An unknown error occurred."
+    },
+    "abort": {
+      "already_configured": "This ONU stick is already configured.",
+      "reconfigure_successful": "Configuration updated successfully."
+    }
+  },
+  "services": {
+    "reboot_onu_stick": {
+      "name": "Reboot ONU Stick",
+      "description": "Reboot the ONU stick device using SSH"
+    },
+    "regenerate_ssh_key": {
+      "name": "Regenerate SSH Key",
+      "description": "Generate a new SSH key for the ONU stick (backs up current key)"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "temp_cpu0": { "name": "CPU 0" },
+      "temp_cpu1": { "name": "CPU 1" },
+      "temp_optic": { "name": "Optical Temperature" },
+      "rx_power": { "name": "RX Power" },
+      "tx_power": { "name": "TX Power" },
+      "tx_bias": { "name": "TX Bias" },
+      "voltage": { "name": "Module Voltage" },
+      "eth_speed": { "name": "Ethernet Speed" },
+      "cpu_load": { "name": "CPU Load Average" },
+      "memory_total": { "name": "Memory Total" },
+      "memory_used": { "name": "Memory Used" },
+      "memory_available": { "name": "Memory Available" },
+      "memory_percent": { "name": "Memory Usage" }
+    },
+    "text": {
+        "active_bank": { "name": "Active Firmware Bank" },
+        "ploam_status": { "name": "PLOAM Status" },
+        "pon_mode": { "name": "PON Mode" },
+        "mac_address": { "name": "Management MAC Address" },
+        "ip_address": { "name": "Management IP Address" },
+        "uptime": { "name": "Uptime" },
+        "soc_model": { "name": "SoC Model" },
+        "soc_arch": { "name": "SoC Architecture" },
+        "public_key": { "name": "SSH Key Type" }
+    },
+    "button": {
+        "reboot": { "name": "Reboot" },
+        "regenerate_ssh_key": { "name": "Regenerate SSH Key" }
+    }
+  }
+} 

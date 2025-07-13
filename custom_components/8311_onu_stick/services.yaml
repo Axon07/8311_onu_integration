@@ -1,0 +1,13 @@
+reboot_onu_stick:
+  name: "Reboot ONU Stick"
+  description: "Reboot the ONU stick device using SSH"
+  target:
+    entity:
+      integration: 8311_onu_stick
+
+regenerate_ssh_key:
+  name: "Regenerate SSH Key"
+  description: "Generate a new SSH key for the ONU stick (backs up current key)"
+  target:
+    entity:
+      integration: 8311_onu_stick 
