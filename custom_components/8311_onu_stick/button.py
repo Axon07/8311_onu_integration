@@ -76,7 +76,7 @@ class OnuRegenerateSshKeyButton(ButtonEntity):
 
     _attr_has_entity_name = True
     _attr_entity_category = EntityCategory.CONFIG
-    _attr_icon = "mdi:key-refresh"
+    _attr_icon = "mdi:key-change"
 
     def __init__(self, entry: ConfigEntry) -> None:
         """Initialize the regenerate SSH key button."""
