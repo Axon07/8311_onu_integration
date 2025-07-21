@@ -1,5 +1,5 @@
 # 8311 XGS-PON ONU SSH Exporter Integration
-<img src="./assets/8311_green_light.png" alt="Logo" width="50"/>
+<img src="./assets/logo.png" alt="Logo" width="50"/>
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 
@@ -58,9 +58,13 @@ flashed __XGS-PON ONU__ / __WAS-110__ ONU SFP+ sticks via __SSH__.
 
 ### SSH Key Management
 
-The integration automatically generates and manages SSH keys for secure communication. The public key will be displayed during setup and needs to be added to your ONU stick's SSH key management interface. There is also a `SSH Public Key` sensor that has the public key as an attribute.
+The integration automatically generates and manages SSH keys for secure communication. 
+The public key will be displayed during setup and needs to be added to your ONU stick's SSH key management interface. 
+There is also a `SSH Public Key` sensor that has the public key as an _attribute_.
 
 **Location on ONU**: System → Administration → SSH-Keys
+
+![Public Key Sensor](./assets/pub_key-sensor.png)
 
 ## Services
 
