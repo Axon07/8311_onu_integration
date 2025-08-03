@@ -292,6 +292,79 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             }
         )
 
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None):
+        """Handle the reconfigure step."""
+        errors: dict[str, str] = {}
+
+        # Define the schema for reconfiguration (exclude optional scan_interval)
+        RECONFIGURE_SCHEMA = vol.Schema(
+            {
+                vol.Required(
+                    "onu_host",
+                    default=self._get_reconfigure_entry().data.get("onu_host"),
+                ): str,
+                vol.Required(
+                    "onu_user",
+                    default=self._get_reconfigure_entry().data.get("onu_user"),
+                ): str,
+                vol.Required(
+                    "device_manufacturer",
+                    default=self._get_reconfigure_entry().data.get(
+                        "device_manufacturer", "Unknown"
+                    ),
+                ): str,
+                vol.Required(
+                    "device_name",
+                    default=self._get_reconfigure_entry().data.get(
+                        "device_name", "XGSPON ONU Stick"
+                    ),
+                ): str,
+            }
+        )
+
+        if user_input is not None:
+            # Store user input
+            self._data.update(user_input)
+
+            # Check if SSH is available on the new host
+            if not await check_ssh_availability(self.hass, user_input["onu_host"]):
+                errors["base"] = "ssh_not_available"
+            else:
+                try:
+                    # Generate or reuse SSH key
+                    await generate_ssh_key(self.hass, self._data)
+
+                    # Set the unique_id and check for conflicts
+                    await self.async_set_unique_id(self._data["onu_host"])
+                    self._abort_if_unique_id_configured(updates={})
+
+                    # Update the existing config entry
+                    return self.async_update_reload_and_abort(
+                        self._get_reconfigure_entry(),
+                        data_updates=self._data,
+                        title=user_input["device_name"],
+                    )
+                except CannotConnect as e:
+                    errors["base"] = str(e)
+                except Exception:
+                    _LOGGER.exception("Unexpected exception during reconfiguration")
+                    errors["base"] = "unknown"
+
+        return self.async_show_form(
+            step_id="reconfigure",
+            data_schema=RECONFIGURE_SCHEMA,
+            errors=errors,
+            description_placeholders={
+                "onu_host": self._data.get(
+                    "onu_host", self._get_reconfigure_entry().data.get("onu_host")
+                ),
+                "public_key": self._data.get(
+                    CONF_PUBLIC_KEY,
+                    self._get_reconfigure_entry().data.get(CONF_PUBLIC_KEY, ""),
+                ),
+            },
+        )
+
     @staticmethod
     @callback
     def async_get_options_flow(config_entry):
