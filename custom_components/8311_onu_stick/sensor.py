@@ -229,8 +229,19 @@ class OnuSensor(SensorEntity):
     @property
     def native_value(self) -> StateType:
         """Return the state of the sensor."""
-        return self.coordinator.data.get(self.sensor_key)
+        value = self.coordinator.data.get(self.sensor_key)
 
+        # Check if the value is not None before performing calculations
+        if value is None:
+            return None
+
+        # If this is the cpu_load sensor, multiply by 100 to convert to percentage
+        if self.sensor_key == "cpu_load":
+            return value * 100
+        
+        # Otherwise, return the value as is
+        return value
+        
     @property
     def available(self) -> bool:
         """Return if entity is available."""
