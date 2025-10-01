@@ -123,7 +123,7 @@ ENTITY_DEFINITIONS = {
     "memory_total": SensorEntityDescription(
         key="memory_total",
         name="Memory Total",
-        native_unit_of_measurement=UnitOfInformation.GIGABYTES,
+        native_unit_of_measurement=UnitOfInformation.MEGABYTES,
         device_class=SensorDeviceClass.DATA_SIZE,
         state_class=SensorStateClass.MEASUREMENT,
         suggested_display_precision=2,
@@ -133,7 +133,7 @@ ENTITY_DEFINITIONS = {
     "memory_used": SensorEntityDescription(
         key="memory_used",
         name="Memory Used",
-        native_unit_of_measurement=UnitOfInformation.GIGABYTES,
+        native_unit_of_measurement=UnitOfInformation.MEGABYTES,
         device_class=SensorDeviceClass.DATA_SIZE,
         state_class=SensorStateClass.MEASUREMENT,
         suggested_display_precision=2,
@@ -143,7 +143,7 @@ ENTITY_DEFINITIONS = {
     "memory_available": SensorEntityDescription(
         key="memory_available",
         name="Memory Available",
-        native_unit_of_measurement=UnitOfInformation.GIGABYTES,
+        native_unit_of_measurement=UnitOfInformation.MEGABYTES,
         device_class=SensorDeviceClass.DATA_SIZE,
         state_class=SensorStateClass.MEASUREMENT,
         suggested_display_precision=2,
