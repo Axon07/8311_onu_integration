@@ -112,13 +112,13 @@ ENTITY_DEFINITIONS = {
         suggested_display_precision=0,
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
-    "cpu_utilization": SensorEntityDescription(
-        key="cpu_utilization",
-        name="CPU Utilization",
+    "cpu_load": SensorEntityDescription(
+        key="cpu_load",
+        name="CPU Load Average",
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
         suggested_display_precision=2,
-        icon="mdi:percent",
+        icon="mdi:cpu-32-bit",
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
     "memory_total": SensorEntityDescription(
