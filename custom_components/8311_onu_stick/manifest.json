@@ -6,6 +6,6 @@
   "issue_tracker": "https://github.com/Axon07/onu_exporter/issues",
   "codeowners": ["@baudneo","@Axon07"],
   "requirements": ["paramiko", "cryptography"],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "iot_class": "local_polling"
 }
