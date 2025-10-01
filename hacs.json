@@ -1,6 +1,6 @@
 {
   "name": "8311 XGS-PON ONU SSH Exporter",
   "render_readme": true,
-  "homeassistant": "2024.10.0",
-  "hacs": "1.6.0"
+  "homeassistant": "2025.09.0",
+  "hacs": "2.0.5"
 } 
