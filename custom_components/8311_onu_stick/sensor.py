@@ -117,7 +117,7 @@ ENTITY_DEFINITIONS = {
         name="CPU Load Average",
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
-        suggested_display_precision=2,
+        suggested_display_precision=0,
         icon="mdi:cpu-32-bit",
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
