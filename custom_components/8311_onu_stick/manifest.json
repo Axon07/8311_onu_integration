@@ -2,9 +2,9 @@
   "domain": "8311_onu_stick",
   "name": "8311 XGS-PON ONU",
   "config_flow": true,
-  "documentation": "https://github.com/baudneo/onu_exporter",
-  "issue_tracker": "https://github.com/baudneo/onu_exporter/issues",
-  "codeowners": ["@baudneo"],
+  "documentation": "https://github.com/Axon07/onu_exporter",
+  "issue_tracker": "https://github.com/Axon07/onu_exporter/issues",
+  "codeowners": ["@baudneo","@Axon07"],
   "requirements": ["paramiko", "cryptography"],
   "version": "0.0.3",
   "iot_class": "local_polling"
